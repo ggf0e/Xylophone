@@ -1,20 +1,18 @@
-//
-//  ViewController.swift
-//  Xylophone
-//
-//  Created by Angela Yu on 28/06/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
-//
-
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+final class ViewController: UIViewController {
+    private var player: AVAudioPlayer!
+    
+    @IBAction private func KeyPressed(_ sender: UIButton) {
+        playSouund(nameSound: sender.currentTitle!)
     }
-
-
+    
+    private func playSouund(nameSound: String) {
+        let url = Bundle.main.url(forResource: nameSound, withExtension: "wav")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
+    }
     
 
 }
